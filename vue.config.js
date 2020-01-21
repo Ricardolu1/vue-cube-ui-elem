@@ -1,7 +1,13 @@
 const  appData = require('./data.json')
+const path = require('path')
 const seller = appData.seller
 const goods = appData.goods
 const ratings = appData.ratings
+
+
+function resolve(dir) {
+  return path.join(__dirname , dir) //当前项目的目录
+}
 
 module.exports = {
   css: {
@@ -41,5 +47,11 @@ module.exports = {
         })
       })
     }
+  },
+  chainWebpack(config){
+    config.resolve.alias
+      .set('components',resolve('src/components'))
+      .set('common',resolve('src/common'))
+
   }
 }
